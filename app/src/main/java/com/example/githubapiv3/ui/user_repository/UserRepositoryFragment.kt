@@ -44,12 +44,10 @@ class UserRepositoryFragment : Fragment() {
         setupUI()
         _viewModel.selectedUserDetails.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-
+                is Resource.Loading ->
+                    binding.userDetailed.userDetailsProgressBar.visible = true
                 is Resource.Success -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.userDetailed.userDetailsProgressBar.visible = false
                     binding.userDetailed.apply {
                         fullname.text = it.data.name
                         followersValue.text = it.data.followers
@@ -58,6 +56,7 @@ class UserRepositoryFragment : Fragment() {
                 }
 
                 is Resource.Error -> {
+                    binding.userDetailed.userDetailsProgressBar.visible = false
                     Toast.makeText(
                         requireContext(),
                         R.string.get_user_details_error,

@@ -41,6 +41,7 @@
     <TextView
         android:id="@+id/emptyList"
         android:text="@string/empty_list"
+        android:textColor="@color/black"
         android:fontFamily="@font/poppins_light"
         android:textSize="24sp"
         android:layout_width="match_parent"
@@ -51,6 +52,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray"
         android:visibility="gone"
         tools:listitem="@layout/repo_item_layout"/>
 
