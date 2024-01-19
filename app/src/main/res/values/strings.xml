@@ -1,6 +1,20 @@
-<resources>
-    <string name="app_name">GitHubApiv3</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">GitHub</string>
+    <string name="title_users">GitHub users</string>
+    <string name="bottom_nav_users">Users</string>
+    <string name="title_repository">User repository</string>
+    <string name="title_repository_webview">Repository</string>
+    <string name="content_description_avatar">User avatar</string>
+    <string name="get_users_error">There was an error getting the users</string>
+    <string name="get_user_repositories_error">There was an error getting the user repositories</string>
+    <string name="get_user_details_error">There was an error getting the user details</string>
+    <string name="empty_list">Empty list</string>
+    <string name="stars_label">Stars:</string>
+    <string name="language_label">Language:</string>
+    <string name="repositories_label">Repositories</string>
+    <string name="username">\@%s</string>
+    <string name="followers_label" tools:ignore="ExtraTranslation">Followers</string>
+    <string name="following_label" tools:ignore="ExtraTranslation">Following</string>
+    <string name="description_label">Description</string>
+    <string name="search">Search</string>
 </resources>

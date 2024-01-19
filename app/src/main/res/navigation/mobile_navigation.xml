@@ -3,23 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_users">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.githubapiv3.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_users"
+        android:name="com.example.githubapiv3.ui.users.UsersFragment"
+        android:label="@string/title_users"
+        tools:layout="@layout/fragment_users">
+        <action
+            android:id="@+id/action_navigation_users_to_repositories"
+            app:destination="@id/navigation_repository"
+            app:popUpTo="@id/navigation_users" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.githubapiv3.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_webview"
+        android:name="com.example.githubapiv3.ui.repository_webview.RepositoryWebViewFragment"
+        android:label="@string/title_repository_webview"
+        tools:layout="@layout/fragment_repository_webview" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.githubapiv3.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_repository"
+        android:name="com.example.githubapiv3.ui.user_repository.UserRepositoryFragment"
+        android:label="@string/title_repository"
+        tools:layout="@layout/fragment_user_repository">
+        <action
+            android:id="@+id/action_navigation_repositories_to_repository"
+            app:destination="@id/navigation_webview"
+            app:popUpTo="@id/navigation_repository" />
+        <argument
+            android:name="user"
+            app:argType="com.example.githubapiv3.domain.models.User" />
+    </fragment>
 </navigation>
