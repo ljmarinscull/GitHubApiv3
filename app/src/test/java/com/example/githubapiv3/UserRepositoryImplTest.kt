@@ -1,6 +1,5 @@
 package com.example.githubapiv3
 
-import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isTrue
@@ -20,7 +19,6 @@ import org.junit.jupiter.api.Test
 import retrofit2.HttpException
 
 class UserRepositoryImplTest {
-
     private lateinit var repository: UserRepositoryImpl
 
     private lateinit var api: ApiServiceFake
@@ -44,26 +42,26 @@ class UserRepositoryImplTest {
     }
 
     @Test
-    fun `Repository returns a list of users error, return failure`() = runBlocking {
+    fun `Repository returns an expected list of users`() = runBlocking {
         val usersResult = repository.getUsers()
 
-        assertThat(usersResult.isSuccess).isTrue()
-        assertThat(usersResult.getOrThrow().size).isEqualTo(api.users.size)
+        assertk.assertThat(usersResult.isSuccess).isTrue()
+        assertk.assertThat(usersResult.getOrThrow().size).isEqualTo(api.users.size)
     }
 
     @Test
     fun `Get repositories by user is success but the items are filtered`() = runBlocking {
         val usersResult = repository.getRepositoriesByUser("")
 
-        assertThat(usersResult.isSuccess).isTrue()
-        assertThat(usersResult.getOrThrow().size).isNotEqualTo(api.repositories.size)
+        assertk.assertThat(usersResult.isSuccess).isTrue()
+        assertk.assertThat(usersResult.getOrThrow().size).isNotEqualTo(api.repositories.size)
 
         val expectedRepositories = repositoryListMapper.map(api.repositories).filter { !it.forked }
-        assertThat(usersResult.getOrThrow()).isEqualTo(expectedRepositories)
+        assertk.assertThat(usersResult.getOrThrow()).isEqualTo(expectedRepositories)
     }
 
     @Test
-    fun `Repository returns a list of users error, return failurem`() = runBlocking {
+    fun `Returns failure when the API returns a HttpException`() = runBlocking {
 
         val apiFake: ApiServiceFake = mockk()
 
@@ -81,11 +79,11 @@ class UserRepositoryImplTest {
 
         val result = repository.getRepositoriesByUser("")
 
-        assertThat(result.isFailure).isTrue()
+        assertk.assertThat(result.isFailure).isTrue()
     }
 
     @Test
-    fun `Repository returns a list of users error, return failuremmj`() = runBlocking {
+    fun `Check if the url to get the user repositories is the correct one`() = runBlocking {
         val url = api.users.first().url
         val apiFake: ApiServiceFake = mockk()
 
@@ -105,11 +103,11 @@ class UserRepositoryImplTest {
             apiFake.requestRepositoriesByUser(match{ url == it })
         }
 
-        assertThat(result.isSuccess).isTrue()
+        assertk.assertThat(result.isSuccess).isTrue()
     }
 
     @Test
-    fun `Repository returns a list of users error, return failuremm`() = runBlocking {
+    fun `Check if the url to get the user details is the correct one`() = runBlocking {
         val url = api.users.first().url
         val apiFake: ApiServiceFake = mockk()
 
@@ -129,6 +127,6 @@ class UserRepositoryImplTest {
             apiFake.requestUserDetails(match{ url == it })
         }
 
-        assertThat(result.isSuccess).isTrue()
+        assertk.assertThat(result.isSuccess).isTrue()
     }
 }
