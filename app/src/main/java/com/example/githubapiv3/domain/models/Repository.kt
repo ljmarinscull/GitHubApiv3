@@ -7,5 +7,5 @@ data class Repository(
     val stars: Int,
     val description: String,
     val url: String,
-    val folked: Boolean
+    val forked: Boolean
 )

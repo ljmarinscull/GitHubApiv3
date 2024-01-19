@@ -10,7 +10,7 @@ data class RepositoryJO(
     val parent: Parent?,
     val source: Source?,
 ){
-    val isFolked = parent != null && source != null
+    val isForked = parent != null && source != null
 }
 
 data class Parent(val id: Int)

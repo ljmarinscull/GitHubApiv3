@@ -58,7 +58,7 @@ class UserRepositoryImplTest {
         assertThat(usersResult.isSuccess).isTrue()
         assertThat(usersResult.getOrThrow().size).isNotEqualTo(api.repositories.size)
 
-        val expectedRepositories = repositoryListMapper.map(api.repositories).filter { !it.folked }
+        val expectedRepositories = repositoryListMapper.map(api.repositories).filter { !it.forked }
         assertThat(usersResult.getOrThrow()).isEqualTo(expectedRepositories)
     }
 

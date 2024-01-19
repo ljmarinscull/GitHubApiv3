@@ -89,7 +89,7 @@ class UserRepositoryImpl (
             val fetchedUserRepositories = userRepositoriesResult.await().getOrNull()
             if (fetchedUserRepositories != null) {
                 Result.success(
-                    repositoryMapperList.map(fetchedUserRepositories).filter { !it.folked }
+                    repositoryMapperList.map(fetchedUserRepositories).filter { !it.forked }
                 )
             } else {
                 Result.failure(

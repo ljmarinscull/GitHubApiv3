@@ -31,7 +31,6 @@ import com.example.githubapiv3.utils.mappers.UserListMapper
 import com.example.githubapiv3.utils.mappers.UserMapper
 import com.example.githubapiv3.utils.visible
 
-
 class UsersFragment : Fragment() {
 
     private var _binding: FragmentUsersBinding? = null
@@ -126,6 +125,7 @@ class UsersFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.users_menu,menu)
     }

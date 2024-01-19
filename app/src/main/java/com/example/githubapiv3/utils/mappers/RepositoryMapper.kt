@@ -11,7 +11,7 @@ object RepositoryMapper : IMapper<RepositoryJO, Repository> {
             language = input.language ?: "Unknown",
             stars = input.stargazers_count,
             description = input.description ?: "Unknown",
-            folked = input.isFolked,
+            forked = input.isForked,
             url = input.html_url
         )
     }
