@@ -54,7 +54,6 @@ class UserRepositoryFragment : Fragment() {
                         followingValue.text = it.data.following
                     }
                 }
-
                 is Resource.Error -> {
                     binding.userDetailed.userDetailsProgressBar.visible = false
                     Toast.makeText(

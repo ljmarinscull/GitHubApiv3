@@ -1,5 +1,6 @@
 package com.example.githubapiv3.ui.users
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -81,6 +82,7 @@ class UserAdapter(
             return filterResults
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Suppress("UNCHECKED_CAST")
         override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
             _differ.submitList(filterResults.values as List<User>)

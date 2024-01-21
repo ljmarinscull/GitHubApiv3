@@ -1,5 +1,6 @@
 package com.example.githubapiv3
 
+import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isTrue
@@ -45,19 +46,19 @@ class UserRepositoryImplTest {
     fun `Repository returns an expected list of users`() = runBlocking {
         val usersResult = repository.getUsers()
 
-        assertk.assertThat(usersResult.isSuccess).isTrue()
-        assertk.assertThat(usersResult.getOrThrow().size).isEqualTo(api.users.size)
+        assertThat(usersResult.isSuccess).isTrue()
+        assertThat(usersResult.getOrThrow().size).isEqualTo(api.users.size)
     }
 
     @Test
     fun `Get repositories by user is success but the items are filtered`() = runBlocking {
         val usersResult = repository.getRepositoriesByUser("")
 
-        assertk.assertThat(usersResult.isSuccess).isTrue()
-        assertk.assertThat(usersResult.getOrThrow().size).isNotEqualTo(api.repositories.size)
+        assertThat(usersResult.isSuccess).isTrue()
+        assertThat(usersResult.getOrThrow().size).isNotEqualTo(api.repositories.size)
 
         val expectedRepositories = repositoryListMapper.map(api.repositories).filter { !it.forked }
-        assertk.assertThat(usersResult.getOrThrow()).isEqualTo(expectedRepositories)
+        assertThat(usersResult.getOrThrow()).isEqualTo(expectedRepositories)
     }
 
     @Test
@@ -79,7 +80,7 @@ class UserRepositoryImplTest {
 
         val result = repository.getRepositoriesByUser("")
 
-        assertk.assertThat(result.isFailure).isTrue()
+        assertThat(result.isFailure).isTrue()
     }
 
     @Test
@@ -103,7 +104,7 @@ class UserRepositoryImplTest {
             apiFake.requestRepositoriesByUser(match{ url == it })
         }
 
-        assertk.assertThat(result.isSuccess).isTrue()
+        assertThat(result.isSuccess).isTrue()
     }
 
     @Test
@@ -127,6 +128,6 @@ class UserRepositoryImplTest {
             apiFake.requestUserDetails(match{ url == it })
         }
 
-        assertk.assertThat(result.isSuccess).isTrue()
+        assertThat(result.isSuccess).isTrue()
     }
 }

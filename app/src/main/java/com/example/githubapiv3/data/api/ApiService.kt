@@ -38,8 +38,8 @@ class RetrofitClient {
 
     companion object {
         private var instance : ApiService? = null
-        private val token = "Bearer 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"
-        private val AUTHORIZATION = "Authorization"
+        private const val token = "Bearer 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"
+        private const val AUTHORIZATION = "Authorization"
 
         @Synchronized
         fun getInstance(): ApiService {
